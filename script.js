@@ -1,10 +1,6 @@
 function toggleMenu() {
     const menu = document.getElementById('menu');
-    if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-    } else {
-        menu.style.display = 'block';
-    }
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
 function showSection(sectionId) {
@@ -49,6 +45,31 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
         phone: document.getElementById('phone').value,
     };
 
-    console.log(userData); // يمكن استبدال هذا بإرسال البيانات إلى الخادم
-    document.getElementById('signupMessage').textContent = "تم إنشاء الحساب بنجاح!";
+    emailjs.send('service_stduown', 'template_27rvt66', {
+        to_email: userData.email,
+        full_name: userData.fullName,
+        school: userData.school,
+        activation_link: "https://your-platform.com/activate"
+    }).then(() => {
+        document.getElementById('signupMessage').textContent = "تم إرسال رابط التفعيل إلى بريدك الإلكتروني!";
+    }).catch(() => {
+        document.getElementById('signupMessage').textContent = "حدث خطأ أثناء الإرسال!";
+    });
 });
+
+function showUnderConstruction() {
+    alert("جارٍ العمل على بناء هذه الصفحة!");
+}
+
+function searchSchools() {
+    const input = document.getElementById('searchSchool').value.toLowerCase();
+    const schoolsList = document.getElementById('schoolsList').getElementsByTagName('li');
+    for (let i = 0; i < schoolsList.length; i++) {
+        const schoolName = schoolsList[i].textContent.toLowerCase();
+        if (schoolName.includes(input)) {
+            schoolsList[i].style.display = "block";
+        } else {
+            schoolsList[i].style.display = "none";
+        }
+    }
+}
