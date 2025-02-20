@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة مدارس الجمهورية اليمنية</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>مرحبًا بكم في منصة مدارس الجمهورية اليمنية</h1>
+            <p>بسم الله الرحمن الرحيم</p>
+            <p>وقل رب زدني علما</p>
+            <img src="images/logo.png" alt="شعار الجمهورية اليمنية" class="logo">
+        </div>
+        <nav>
+            <button onclick="toggleMenu()">الرئيسية</button>
+            <button onclick="showSection('login')">تسجيل الدخول</button>
+            <button onclick="showSection('signup')">إنشاء حساب</button>
+            <button>المنح الدراسية</button>
+        </nav>
+    </header>
+
+    <div id="menu" class="menu">
+        <ul>
+            <li><a href="#services">الخدمات التي توفرها المنصة</a></li>
+            <li><a href="#schools">المدارس المشاركة في النظام</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section id="services">
+            <h2>أهلاً وسهلاً بكم</h2>
+            <p>هذه المنصة تم تطويرها لخدمة الطلاب والمعلمين وإدارة المدارس...</p>
+        </section>
+
+        <section id="schools">
+            <h2>المدارس المشاركة</h2>
+            <input type="text" placeholder="ابحث عن مدرسة...">
+            <ul>
+                <li><a href="#">مدرسة النور بالثوباني</a></li>
+            </ul>
+        </section>
+
+        <section id="login" class="hidden">
+            <h2>تسجيل الدخول</h2>
+            <form id="loginForm">
+                <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="loginPassword" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+            </form>
+            <p id="loginMessage"></p>
+        </section>
+
+        <section id="signup" class="hidden">
+            <h2>إنشاء حساب</h2>
+            <form id="signupForm">
+                <input type="text" id="fullName" placeholder="الاسم الرباعي" required>
+                <input type="text" id="nickname" placeholder="اللقب" required>
+                <select id="gender" required>
+                    <option value="male">ذكر</option>
+                    <option value="female">أنثى</option>
+                </select>
+                <select id="role" required>
+                    <option value="student">طالب</option>
+                    <option value="teacher">مدرس</option>
+                    <option value="admin">إدارة مدرسة</option>
+                </select>
+                <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="password" placeholder="كلمة المرور (أكثر من 8 أحرف)" required>
+                <input type="password" id="confirmPassword" placeholder="تأكيد كلمة المرور" required>
+                <select id="school" required>
+                    <option value="مدرسة النور بالثوباني">مدرسة النور بالثوباني</option>
+                </select>
+                <select id="grade" required>
+                    <option value="1">الصف الأول</option>
+                    <option value="2">الصف الثاني</option>
+                    <!-- أضف بقية الصفوف -->
+                </select>
+                <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+                <button type="submit">حفظ</button>
+            </form>
+            <p id="signupMessage"></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>تم إنشاء الصفحة بواسطة عبدالله عباس، جميع الحقوق محفوظة</p>
+        <p>للتواصل عبر الواتساب: +967771004061</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
