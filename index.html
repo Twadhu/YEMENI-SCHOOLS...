@@ -10,8 +10,8 @@
     <header>
         <div class="header-content">
             <h1>مرحبًا بكم في منصة مدارس الجمهورية اليمنية</h1>
-            <p>بسم الله الرحمن الرحيم</p>
-            <p>وقل رب زدني علما</p>
+            <p class="quran-text">بسم الله الرحمن الرحيم</p>
+            <p class="quran-text">وقل رب زدني علما</p>
             <img src="images/logo.png" alt="شعار الجمهورية اليمنية" class="logo">
         </div>
         <nav>
@@ -30,19 +30,22 @@
     </div>
 
     <main>
+        <!-- قسم الخدمات -->
         <section id="services">
             <h2>أهلاً وسهلاً بكم</h2>
             <p>هذه المنصة تم تطويرها لخدمة الطلاب والمعلمين وإدارة المدارس...</p>
         </section>
 
+        <!-- قسم المدارس -->
         <section id="schools">
             <h2>المدارس المشاركة</h2>
             <input type="text" placeholder="ابحث عن مدرسة...">
-            <ul>
-                <li><a href="#">مدرسة النور بالثوباني</a></li>
+            <ul id="schoolsList">
+                <li><a href="#" onclick="showUnderConstruction()">مدرسة النور بالثوباني</a></li>
             </ul>
         </section>
 
+        <!-- تسجيل الدخول -->
         <section id="login" class="hidden">
             <h2>تسجيل الدخول</h2>
             <form id="loginForm">
@@ -53,6 +56,7 @@
             <p id="loginMessage"></p>
         </section>
 
+        <!-- إنشاء حساب -->
         <section id="signup" class="hidden">
             <h2>إنشاء حساب</h2>
             <form id="signupForm">
@@ -76,7 +80,6 @@
                 <select id="grade" required>
                     <option value="1">الصف الأول</option>
                     <option value="2">الصف الثاني</option>
-                    <!-- أضف بقية الصفوف -->
                 </select>
                 <input type="tel" id="phone" placeholder="رقم الهاتف" required>
                 <button type="submit">حفظ</button>
@@ -91,5 +94,7 @@
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>emailjs.init('QM4EgDHKawTHU-5dp');</script>
 </body>
 </html>
