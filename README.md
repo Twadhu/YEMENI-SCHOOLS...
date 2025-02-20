@@ -14,138 +14,6 @@
 ## التوثيق
 - تم استخدام HTML, CSS, JavaScript.
 - تم دمج EmailJS لإرسال البريد الإلكتروني.body {
-    font-family: 'Arial', sans-serif;
-    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
-    color: #333;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-header {
-    background: linear-gradient(to right, #28a745, #218838);
-    color: white;
-    padding: 20px;
-}
-
-header h1 {
-    font-size: 2.5em;
-    margin: 0;
-}
-
-header p {
-    font-size: 1.2em;
-    margin: 5px 0;
-}
-
-.logo {
-    width: 100px;
-    margin-top: 10px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-}
-
-nav button {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 1em;
-}
-
-nav button:hover {
-    background-color: #0056b3;
-}
-
-.menu {
-    display: none;
-    background-color: rgba(40, 167, 69, 0.9);
-    padding: 10px;
-    position: absolute;
-    top: 100px;
-    width: 100%;
-    z-index: 1000;
-}
-
-.menu ul {
-    list-style: none;
-    padding: 0;
-}
-
-.menu ul li {
-    margin: 10px 0;
-}
-
-.menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    background-color: #007bff;
-    color: white;
-    padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-
-.hidden {
-    display: none;
-}
-
-#login, #signup {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
-}
-
-#loginForm, #signupForm {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#loginForm input, #signupForm input, #signupForm select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1em;
-}
-
-#loginForm button, #signupForm button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.1em;
-    border-radius: 5px;
-}
-
-#loginForm button:hover, #signupForm button:hover {
-    background-color: #218838;
-}
-
-#loginMessage, #signupMessage {
-    margin-top: 10px;
-    color: red;
-    font-size: 0.9em;
-}
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -157,9 +25,9 @@ footer {
 <body>
     <header>
         <div class="header-content">
-            <h1>مرحبًا بكم في منصة مدارس الجمهورية اليمنية</h1>
             <p class="quran-text">بسم الله الرحمن الرحيم</p>
             <p class="quran-text">وقل رب زدني علما</p>
+            <h1>مرحبًا بكم في منصة مدارس الجمهورية اليمنية</h1>
             <img src="images/logo.png" alt="شعار الجمهورية اليمنية" class="logo">
         </div>
         <nav>
@@ -187,9 +55,12 @@ footer {
         <!-- قسم المدارس -->
         <section id="schools">
             <h2>المدارس المشاركة</h2>
-            <input type="text" placeholder="ابحث عن مدرسة...">
+            <input type="text" id="searchSchool" placeholder="ابحث عن مدرسة..." oninput="searchSchools()">
             <ul id="schoolsList">
                 <li><a href="#" onclick="showUnderConstruction()">مدرسة النور بالثوباني</a></li>
+                <li><a href="#" onclick="showUnderConstruction()">مدرسة الأمل</a></li>
+                <li><a href="#" onclick="showUnderConstruction()">مدرسة المستقبل</a></li>
+                <li><a href="#" onclick="showUnderConstruction()">مدرسة النهضة</a></li>
             </ul>
         </section>
 
@@ -224,10 +95,23 @@ footer {
                 <input type="password" id="confirmPassword" placeholder="تأكيد كلمة المرور" required>
                 <select id="school" required>
                     <option value="مدرسة النور بالثوباني">مدرسة النور بالثوباني</option>
+                    <option value="مدرسة الأمل">مدرسة الأمل</option>
+                    <option value="مدرسة المستقبل">مدرسة المستقبل</option>
+                    <option value="مدرسة النهضة">مدرسة النهضة</option>
                 </select>
                 <select id="grade" required>
                     <option value="1">الصف الأول</option>
                     <option value="2">الصف الثاني</option>
+                    <option value="3">الصف الثالث</option>
+                    <option value="4">الصف الرابع</option>
+                    <option value="5">الصف الخامس</option>
+                    <option value="6">الصف السادس</option>
+                    <option value="7">الصف السابع</option>
+                    <option value="8">الصف الثامن</option>
+                    <option value="9">الصف التاسع</option>
+                    <option value="10">الصف الأول الثانوي</option>
+                    <option value="11">الصف الثاني الثانوي</option>
+                    <option value="12">الصف الثالث الثانوي</option>
                 </select>
                 <input type="tel" id="phone" placeholder="رقم الهاتف" required>
                 <button type="submit">حفظ</button>
@@ -243,16 +127,16 @@ footer {
 
     <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script>emailjs.init('YOUR_EMAILJS_USER_ID');</script>
+    <script>
+        emailjs.init('QM4EgDHKawTHU-5dp'); // استخدم المفتاح العام الخاص بك
+    </script>
 </body>
 </html>
-// إظهار/إخفاء القوائم
 function toggleMenu() {
     const menu = document.getElementById('menu');
     menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
 }
 
-// إظهار الأقسام
 function showSection(sectionId) {
     document.querySelectorAll('main section').forEach(section => {
         section.classList.add('hidden');
@@ -260,22 +144,18 @@ function showSection(sectionId) {
     document.getElementById(sectionId).classList.remove('hidden');
 }
 
-// معالجة تسجيل الدخول
 document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
-    // تحقق من البيانات (يمكن استبدالها باتصال بالخادم)
     if (email === "test@example.com" && password === "12345678") {
         document.getElementById('loginMessage').textContent = "تم تسجيل الدخول بنجاح!";
-        window.location.href = "student-dashboard.html"; // توجيه إلى لوحة الطالب
     } else {
         document.getElementById('loginMessage').textContent = "اسم المستخدم أو كلمة المرور خاطئة.";
     }
 });
 
-// معالجة إنشاء الحساب
 document.getElementById('signupForm').addEventListener('submit', function (e) {
     e.preventDefault();
     const email = document.getElementById('email').value;
@@ -287,7 +167,6 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
         return;
     }
 
-    // جمع بيانات المستخدم
     const userData = {
         fullName: document.getElementById('fullName').value,
         nickname: document.getElementById('nickname').value,
@@ -300,7 +179,6 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
         phone: document.getElementById('phone').value,
     };
 
-    // إرسال البريد الإلكتروني باستخدام EmailJS
     emailjs.send('service_stduown', 'template_27rvt66', {
         to_email: userData.email,
         full_name: userData.fullName,
@@ -313,7 +191,165 @@ document.getElementById('signupForm').addEventListener('submit', function (e) {
     });
 });
 
-// صفحة قيد الإنشاء
 function showUnderConstruction() {
     alert("جارٍ العمل على بناء هذه الصفحة!");
+}
+
+function searchSchools() {
+    const input = document.getElementById('searchSchool').value.toLowerCase();
+    const schoolsList = document.getElementById('schoolsList').getElementsByTagName('li');
+    for (let i = 0; i < schoolsList.length; i++) {
+        const schoolName = schoolsList[i].textContent.toLowerCase();
+        if (schoolName.includes(input)) {
+            schoolsList[i].style.display = "block";
+        } else {
+            schoolsList[i].style.display = "none";
+        }
+    }
+}
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom, #f0f0f0, #ffffff);
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: linear-gradient(to right, #28a745, #218838);
+    color: white;
+    padding: 20px;
+    position: relative;
+}
+
+header h1 {
+    font-size: 2em;
+    margin: 0;
+}
+
+.quran-text {
+    font-family: 'Kufi', Arial, sans-serif;
+    font-size: 1.2em;
+    margin: 5px 0;
+}
+
+.logo {
+    width: 80px;
+    margin-top: 10px;
+}
+
+nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+nav button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 5px;
+}
+
+nav button:hover {
+    background-color: #0056b3;
+}
+
+.menu {
+    display: none;
+    background-color: rgba(40, 167, 69, 0.9);
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 1000;
+    transition: transform 0.3s ease;
+}
+
+.menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu ul li {
+    margin: 10px 0;
+}
+
+.menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+main {
+    padding: 20px;
+    margin-top: 100px;
+}
+
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+#login, #signup {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+#loginForm, #signupForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#loginForm input, #signupForm input, #signupForm select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+#loginForm button, #signupForm button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.1em;
+    border-radius: 5px;
+}
+
+#loginForm button:hover, #signupForm button:hover {
+    background-color: #218838;
+}
+
+#loginMessage, #signupMessage {
+    margin-top: 10px;
+    color: red;
+    font-size: 0.9em;
+}
+
+#schoolsList li {
+    display: block;
+    margin: 10px 0;
 }
