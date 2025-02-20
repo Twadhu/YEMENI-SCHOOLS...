@@ -27,16 +27,15 @@
         <div class="header-content">
             <p class="quran-text">بسم الله الرحمن الرحيم</p>
             <p class="quran-text">وقل رب زدني علما</p>
-            <h1>مرحبًا بكم في منصة مدارس الجمهورية اليمنية</h1>
-            <img src="images/logo.png" alt="شعار الجمهورية اليمنية" class="logo">
         </div>
-        <nav>
-            <button onclick="toggleMenu()">الرئيسية</button>
-            <button onclick="showSection('login')">تسجيل الدخول</button>
-            <button onclick="showSection('signup')">إنشاء حساب</button>
-            <button>المنح الدراسية</button>
-        </nav>
     </header>
+
+    <nav>
+        <button onclick="toggleMenu()">الرئيسية</button>
+        <button onclick="showSection('login')">تسجيل الدخول</button>
+        <button onclick="showSection('signup')">إنشاء حساب</button>
+        <button>المنح الدراسية</button>
+    </nav>
 
     <div id="menu" class="menu">
         <ul>
@@ -132,81 +131,6 @@
     </script>
 </body>
 </html>
-function toggleMenu() {
-    const menu = document.getElementById('menu');
-    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
-}
-
-function showSection(sectionId) {
-    document.querySelectorAll('main section').forEach(section => {
-        section.classList.add('hidden');
-    });
-    document.getElementById(sectionId).classList.remove('hidden');
-}
-
-document.getElementById('loginForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = document.getElementById('loginEmail').value;
-    const password = document.getElementById('loginPassword').value;
-
-    if (email === "test@example.com" && password === "12345678") {
-        document.getElementById('loginMessage').textContent = "تم تسجيل الدخول بنجاح!";
-    } else {
-        document.getElementById('loginMessage').textContent = "اسم المستخدم أو كلمة المرور خاطئة.";
-    }
-});
-
-document.getElementById('signupForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-
-    if (password !== confirmPassword) {
-        document.getElementById('signupMessage').textContent = "كلمة المرور غير متطابقة.";
-        return;
-    }
-
-    const userData = {
-        fullName: document.getElementById('fullName').value,
-        nickname: document.getElementById('nickname').value,
-        gender: document.getElementById('gender').value,
-        role: document.getElementById('role').value,
-        email: email,
-        password: password,
-        school: document.getElementById('school').value,
-        grade: document.getElementById('grade').value,
-        phone: document.getElementById('phone').value,
-    };
-
-    emailjs.send('service_stduown', 'template_27rvt66', {
-        to_email: userData.email,
-        full_name: userData.fullName,
-        school: userData.school,
-        activation_link: "https://your-platform.com/activate"
-    }).then(() => {
-        document.getElementById('signupMessage').textContent = "تم إرسال رابط التفعيل إلى بريدك الإلكتروني!";
-    }).catch(() => {
-        document.getElementById('signupMessage').textContent = "حدث خطأ أثناء الإرسال!";
-    });
-});
-
-function showUnderConstruction() {
-    alert("جارٍ العمل على بناء هذه الصفحة!");
-}
-
-function searchSchools() {
-    const input = document.getElementById('searchSchool').value.toLowerCase();
-    const schoolsList = document.getElementById('schoolsList').getElementsByTagName('li');
-    for (let i = 0; i < schoolsList.length; i++) {
-        const schoolName = schoolsList[i].textContent.toLowerCase();
-        if (schoolName.includes(input)) {
-            schoolsList[i].style.display = "block";
-        } else {
-            schoolsList[i].style.display = "none";
-        }
-    }
-}
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(to bottom, #f0f0f0, #ffffff);
@@ -214,13 +138,16 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 header {
     background: linear-gradient(to right, #28a745, #218838);
     color: white;
     padding: 20px;
-    position: relative;
+    text-align: center;
 }
 
 header h1 {
@@ -234,17 +161,11 @@ header h1 {
     margin: 5px 0;
 }
 
-.logo {
-    width: 80px;
-    margin-top: 10px;
-}
-
 nav {
-    position: absolute;
-    top: 20px;
-    right: 20px;
     display: flex;
+    justify-content: center;
     gap: 10px;
+    margin: 20px 0;
 }
 
 nav button {
@@ -272,6 +193,11 @@ nav button:hover {
     height: 100%;
     z-index: 1000;
     transition: transform 0.3s ease;
+    transform: translateX(100%);
+}
+
+.menu.active {
+    transform: translateX(0);
 }
 
 .menu ul {
@@ -290,17 +216,16 @@ nav button:hover {
 }
 
 main {
+    flex: 1;
     padding: 20px;
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 footer {
     background-color: #007bff;
     color: white;
     padding: 10px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    text-align: center;
 }
 
 .hidden {
@@ -353,3 +278,112 @@ footer {
     display: block;
     margin: 10px 0;
 }
+function toggleMenu() {
+    const menu = document.getElementById('menu');
+    menu.classList.toggle('active');
+}
+
+function showSection(sectionId) {
+    document.querySelectorAll('main section').forEach(section => {
+        section.classList.add('hidden');
+    });
+    document.getElementById(sectionId).classList.remove('hidden');
+}
+
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    if (email === "test@example.com" && password === "12345678") {
+        document.getElementById('loginMessage').textContent = "تم تسجيل الدخول بنجاح!";
+    } else {
+        document.getElementById('loginMessage').textContent = "اسم المستخدم أو كلمة المرور خاطئة.";
+    }
+});
+
+document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+
+    if (password !== confirmPassword) {
+        document.getElementById('signupMessage').textContent = "كلمة المرور غير متطابقة.";
+        return;
+    }
+
+    const userData = {
+        fullName: document.getElementById('fullName').value,
+        nickname: document.getElementById('nickname').value,
+        gender: document.getElementById('gender').value,
+        role: document.getElementById('role').value,
+        email: email,
+        password: password,
+        school: document.getElementById('school').value,
+        grade: document.getElementById('grade').value,
+        phone: document.getElementById('phone').value,
+    };
+
+    // حفظ البيانات في localStorage
+    localStorage.setItem('userData', JSON.stringify(userData));
+
+    // إرسال البريد الإلكتروني
+    emailjs.send('service_stduown', 'template_27rvt66', {
+        to_email: userData.email,
+        full_name: userData.fullName,
+        school: userData.school,
+        activation_link: "https://your-platform.com/activate"
+    }).then(() => {
+        window.location.href = "confirmation.html"; // توجيه إلى صفحة التأكيد
+    }).catch(() => {
+        document.getElementById('signupMessage').textContent = "حدث خطأ أثناء الإرسال!";
+    });
+});
+
+function showUnderConstruction() {
+    alert("جارٍ العمل على بناء هذه الصفحة!");
+}
+
+function searchSchools() {
+    const input = document.getElementById('searchSchool').value.toLowerCase();
+    const schoolsList = document.getElementById('schoolsList').getElementsByTagName('li');
+    for (let i = 0; i < schoolsList.length; i++) {
+        const schoolName = schoolsList[i].textContent.toLowerCase();
+        if (schoolName.includes(input)) {
+            schoolsList[i].style.display = "block";
+        } else {
+            schoolsList[i].style.display = "none";
+        }
+    }
+}
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم إرسال الطلب</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <p class="quran-text">بسم الله الرحمن الرحيم</p>
+            <p class="quran-text">وقل رب زدني علما</p>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <h2>تم إرسال طلبك بنجاح!</h2>
+            <p>سيتم مراجعة طلبك من قبل إدارة المدرسة.</p>
+            <button onclick="window.location.href='index.html'">العودة إلى تسجيل الدخول</button>
+        </section>
+    </main>
+
+    <footer>
+        <p>تم إنشاء الصفحة بواسطة عبدالله عباس، جميع الحقوق محفوظة</p>
+        <p>للتواصل عبر الواتساب: +967771004061</p>
+    </footer>
+</body>
+</html>
